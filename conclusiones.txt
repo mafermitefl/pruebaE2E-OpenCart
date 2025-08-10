@@ -1,0 +1,29 @@
+Conclusiones - Prueba E2E Saucedemo
+
+1. Resumen de la ejecución:
+   La automatización ejecutó correctamente el flujo de compra en https://www.saucedemo.com/
+   Se usó el usuario "Standard_user" y la contrasena "secret_sauce".
+   Se agregaron dos productos al carrito.
+   Se visualizó los productos del carrito.
+   Se completó el formulario.
+   Se verificó el mensaje final "Thank you for your order!".
+   
+2. Resultados:
+   Todos los pasos se ejecutaron sin errores.
+   El tiempo total de ejecución fue de aproximadamente x seggundos.
+   Selenium Manager gestionó automaticamente el driver de Chrome.
+   
+3. Hallazgos:
+   La pagina respondió correctamente, al inicio me bloqueaba un mensaje de contrasena, se 
+   solucionó con la siguiente línea:
+     prefs.put("profile.password_manager_leak_detection", false);
+   este me sirvió para la versión de chrome que mi máquina tiene actualmente, dejé 3 más por 
+   si tenga versiones anterioes
+     prefs.put("credentials_enable_service", false);
+     prefs.put("profile.password_manager_enabled", false);
+     prefs.put("autofill.profile_enabled", false);
+     
+Conslusion:
+El proyecto es totalmente funcional para navegador Chrome, se puede reusar ya que es adaptable 
+por la lectura de datos CSV, lo cual permite ejecutar con múltiples datos.
+   

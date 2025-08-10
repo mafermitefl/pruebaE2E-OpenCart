@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>pruebaMaferMiteFlores</groupId>
+	<artifactId>pruebaE2E</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>saucedemo</name>
+	<description>Prueba E2E - Opcion 2 / Saucedemo </description>
+  
+	<dependencies>
+	    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-java</artifactId>
+		    <version>4.34.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.13.2</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+		<dependency>
+		    <groupId>com.opencsv</groupId>
+		    <artifactId>opencsv</artifactId>
+		    <version>5.12.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.surefire/surefire-report-parser -->
+		<dependency>
+		    <groupId>org.apache.maven.surefire</groupId>
+		    <artifactId>surefire-report-parser</artifactId>
+		    <version>3.5.3</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			    <version>3.5.3</version>
+			</plugin>
+		</plugins>		
+	</build>
+	
+</project>
