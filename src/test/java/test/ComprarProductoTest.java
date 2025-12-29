@@ -1,60 +1,57 @@
 package test;
 
-import java.util.List;
-import java.util.Map;
+import net.serenitybdd.annotations.Steps;
+import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
+import net.thucydides.junit.annotations.UseTestDataFrom;
+import steps.OpenCartSteps;
 
-import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.junit.runner.RunWith;
 
-import hook.Hooks;
-import hook.LeerCsv;
-import pageObject.Cart;
-import pageObject.Login;
-import pageObject.Products;
+@RunWith(SerenityParameterizedRunner.class)
+@UseTestDataFrom(value="src/test/resources/data.csv", separator=';')
 
-public class ComprarProductoTest extends Hooks {
+public class ComprarProductoTest {
 
-	@Test
-	public void TestComprarProducto() {
-		List<Map<String, String>> filas = LeerCsv.readCsv("data.csv");
-		for (Map<String, String> r : filas) {
-			IniciarSession(r);
-			AddProducto(r);
-			VisualizarCarrito();
-			FormularioCompra(r);
-		}
-	}
+	// Deben llamarse igual a las columnas del CSV
+    public String product1;
+    public String product2;
 
-	public void IniciarSession(Map<String, String> r) {
-		Login login = new Login();
-		wait.until(ExpectedConditions.elementToBeClickable(login.User)).sendKeys(r.get("user"));
-		wait.until(ExpectedConditions.elementToBeClickable(login.Password)).sendKeys(r.get("password"));
-		wait.until(ExpectedConditions.elementToBeClickable(login.btnLogin)).click();
-	}
+    public String nombre;
+    public String apellido;
+    public String correo;
+    public String telefono;
+    public String direccion;
+    public String ciudad;
+    public String codPostal;
+    public String pais;
+    public String provincia;
 
-	public void AddProducto(Map<String, String> r) {
-		Products prod = new Products();
-		wait.until(ExpectedConditions.elementToBeClickable(prod.clickbtnAdd(r.get("producto1")))).click();
-		wait.until(ExpectedConditions.elementToBeClickable(prod.clickbtnAdd(r.get("producto2")))).click();
-	}
+    @Steps
+    OpenCartSteps steps;
 
-	public void VisualizarCarrito() {
-		Cart cart = new Cart();
-		wait.until(ExpectedConditions.elementToBeClickable(cart.btnCartContainer)).click();
-	}
+    @Test
+    public void Confirmar_Orden() {
 
-	public void FormularioCompra(Map<String, String> r) {
-		Cart cart = new Cart();
-		wait.until(ExpectedConditions.elementToBeClickable(cart.btnCheckout)).click();
-		wait.until(ExpectedConditions.elementToBeClickable(cart.txtFirstName)).sendKeys(r.get("FirstName"));
-		wait.until(ExpectedConditions.elementToBeClickable(cart.txtLastName)).sendKeys(r.get("LastName"));
-		wait.until(ExpectedConditions.elementToBeClickable(cart.txtPostalCode)).sendKeys(r.get("PostalCode"));
-		wait.until(ExpectedConditions.elementToBeClickable(cart.btnContinue)).click();
-		wait.until(ExpectedConditions.elementToBeClickable(cart.btnFinish)).click();
+        steps.open_home();
 
-		Assert.assertEquals(wait.until(ExpectedConditions.elementToBeClickable(cart.msjThankYou)).getText(),
-				"Thank you for your order!");
-	}
+        steps.agergar_producto(product1);
+        steps.agergar_producto(product2);
+
+        steps.ver_carrito();
+
+        steps.reemplazar_si_sin_stock(product2, "MacBook");
+
+        steps.reemplazar_si_sin_stock(product1, "MacBook");
+
+        steps.validar_carrito_sin_stock();
+
+        steps.ir_checkout();
+
+        steps.completar_datos_invitado(nombre, apellido, correo, telefono, direccion, ciudad, codPostal, pais, provincia);
+
+        steps.confirm_order();
+    }
+
 
 }

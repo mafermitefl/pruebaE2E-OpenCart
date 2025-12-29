@@ -1,14 +1,19 @@
 package pageObject;
 
-import org.openqa.selenium.By;
+import net.serenitybdd.core.annotations.findby.By;
+import net.serenitybdd.core.pages.PageObject;
 
-public class Products {
+public class Products extends PageObject {
 	
-	public By btnAddtoCard;
+	//*[@id="cart"]/button
 	
-	public By clickbtnAdd(String producto) {
-		btnAddtoCard = By.xpath("//button[contains(@id,'"+ producto.toLowerCase().replace(" ", "-") +"')]");
-		return btnAddtoCard;
-	}
+	public void agregar_al_carrito() {
+		$(By.cssSelector("button#button-cart")).click();
+    }
+    
+    public void ir_al_carrito_desde_menu_superior() {
+        $(By.cssSelector("span#cart-total")).click();
+        $(By.cssSelector("p.text-right a[href*='route=checkout/cart']")).click();
+    }
 
 }

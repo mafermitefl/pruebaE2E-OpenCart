@@ -3,15 +3,72 @@
 	<groupId>pruebaMaferMiteFlores</groupId>
 	<artifactId>pruebaE2E</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>saucedemo</name>
-	<description>Prueba E2E - Opcion 2 / Saucedemo </description>
+	<name>opencart</name>
+	<description>Prueba E2E - OpenCart</description>
+	
+	<properties>
+	    <!-- Para que Maven genere reports en verify -->
+	    <serenity.outputDirectory>target/site/serenity</serenity.outputDirectory>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
   
 	<dependencies>
-	    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit-platform-engine -->
 		<dependency>
-		    <groupId>org.seleniumhq.selenium</groupId>
-		    <artifactId>selenium-java</artifactId>
-		    <version>4.34.0</version>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>cucumber-junit-platform-engine</artifactId>
+		    <version>7.33.0</version>
+		    <scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-screenplay -->
+		<dependency>
+		    <groupId>net.serenity-bdd</groupId>
+		    <artifactId>serenity-screenplay</artifactId>
+		    <version>5.0.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-screenplay-webdriver -->
+		<dependency>
+		    <groupId>net.serenity-bdd</groupId>
+		    <artifactId>serenity-screenplay-webdriver</artifactId>
+		    <version>5.0.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-cucumber -->
+		<dependency>
+		    <groupId>net.serenity-bdd</groupId>
+		    <artifactId>serenity-cucumber</artifactId>
+		    <version>5.0.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-core -->
+		<dependency>
+		    <groupId>net.serenity-bdd</groupId>
+		    <artifactId>serenity-core</artifactId>
+		    <version>5.0.2</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit -->
+		<dependency>
+		    <groupId>net.serenity-bdd</groupId>
+		    <artifactId>serenity-junit</artifactId>
+		    <version>5.0.2</version>
+		</dependency>
+		
+	    <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>1.5.23</version>
+		    <scope>compile</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/datatable -->
+		<dependency>
+		    <groupId>io.cucumber</groupId>
+		    <artifactId>datatable</artifactId>
+		    <version>7.33.0</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
@@ -22,18 +79,24 @@
 		    <scope>test</scope>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+		<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
 		<dependency>
-		    <groupId>com.opencsv</groupId>
-		    <artifactId>opencsv</artifactId>
-		    <version>5.12.0</version>
+		    <groupId>org.assertj</groupId>
+		    <artifactId>assertj-core</artifactId>
+		    <version>3.27.6</version>
+		    <scope>test</scope>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/org.apache.maven.surefire/surefire-report-parser -->
+		<!-- https://mvnrepository.com/artifact/tools.jackson.core/jackson-databind -->
 		<dependency>
-		    <groupId>org.apache.maven.surefire</groupId>
-		    <artifactId>surefire-report-parser</artifactId>
-		    <version>3.5.3</version>
+		    <groupId>tools.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>3.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>pruebaMaferMiteFlores</groupId>
+			<artifactId>pruebaApi</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	
@@ -44,7 +107,33 @@
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-surefire-plugin</artifactId>
 			    <version>3.5.3</version>
+			    <configuration>
+		        	<useModulePath>false</useModulePath>
+		        	<includes>
+		          		<include>**/*Runner.java</include>
+		        	</includes>
+		        	<systemPropertyVariables>
+		            	<!-- Serenity autodownload de drivers -->
+		            	<webdriver.autodownload>true</webdriver.autodownload>
+		          	</systemPropertyVariables>
+		        </configuration>
 			</plugin>
+			
+			<!-- https://mvnrepository.com/artifact/net.serenity-bdd.maven.plugins/serenity-maven-plugin -->
+		    <plugin>
+		        <groupId>net.serenity-bdd.maven.plugins</groupId>
+			    <artifactId>serenity-maven-plugin</artifactId>
+			    <version>5.0.2</version>
+		        <executions>
+		    		<execution>
+		            	<id>serenity-reports</id>
+		            	<phase>post-integration-test</phase>
+		            	<goals>
+		              		<goal>aggregate</goal>
+		            	</goals>
+		          	</execution>
+		        </executions>
+		    </plugin>
 		</plugins>		
 	</build>
 	

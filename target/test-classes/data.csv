@@ -1,2 +1,2 @@
-user;password;producto1;producto2;FirstName;LastName;PostalCode
-standard_user;secret_sauce;Sauce Labs Bike Light;Sauce Labs Onesie;Mafer;MiteFlores;90114
+product1;product2;nombre;apellido;correo;telefono;direccion;ciudad;codPostal;pais;provincia
+Canon EOS 5D;iMac;Mafer;MiteFlores;mafer123@gmail.com;999999999;Cda.Nueve de Octubre;Guayaquil;90114;Ecuador;Guayas

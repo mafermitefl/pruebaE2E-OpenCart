@@ -1,6 +1,0 @@
-hook\Hooks.class
-test\ComprarProductoTest.class
-hook\LeerCsv.class
-pageObject\Products.class
-pageObject\Login.class
-pageObject\Cart.class

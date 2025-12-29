@@ -1,6 +1,9 @@
-C:\Users\llNana\eclipse-workspace\pruebaE2E\src\test\java\hook\Hooks.java
-C:\Users\llNana\eclipse-workspace\pruebaE2E\src\test\java\hook\LeerCsv.java
-C:\Users\llNana\eclipse-workspace\pruebaE2E\src\test\java\pageObject\Cart.java
-C:\Users\llNana\eclipse-workspace\pruebaE2E\src\test\java\pageObject\Login.java
-C:\Users\llNana\eclipse-workspace\pruebaE2E\src\test\java\pageObject\Products.java
-C:\Users\llNana\eclipse-workspace\pruebaE2E\src\test\java\test\ComprarProductoTest.java
+C:\Users\llNana\Documents\Personal\Pruebas\Sofka\PruebaE2E-OpenCart\src\test\java\hook\Hooks.java
+C:\Users\llNana\Documents\Personal\Pruebas\Sofka\PruebaE2E-OpenCart\src\test\java\hook\LeerCsv.java
+C:\Users\llNana\Documents\Personal\Pruebas\Sofka\PruebaE2E-OpenCart\src\test\java\pageObject\Cart.java
+C:\Users\llNana\Documents\Personal\Pruebas\Sofka\PruebaE2E-OpenCart\src\test\java\pageObject\Checkout.java
+C:\Users\llNana\Documents\Personal\Pruebas\Sofka\PruebaE2E-OpenCart\src\test\java\pageObject\Home.java
+C:\Users\llNana\Documents\Personal\Pruebas\Sofka\PruebaE2E-OpenCart\src\test\java\pageObject\Products.java
+C:\Users\llNana\Documents\Personal\Pruebas\Sofka\PruebaE2E-OpenCart\src\test\java\runners\OpenCartRunner.java
+C:\Users\llNana\Documents\Personal\Pruebas\Sofka\PruebaE2E-OpenCart\src\test\java\steps\OpenCartSteps.java
+C:\Users\llNana\Documents\Personal\Pruebas\Sofka\PruebaE2E-OpenCart\src\test\java\test\ComprarProductoTest.java

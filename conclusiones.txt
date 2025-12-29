@@ -1,29 +1,47 @@
-Conclusiones - Prueba E2E Saucedemo
+CONCLUSIONES – PRUEBA E2E OPENCART (GUEST CHECKOUT)
 
-1. Resumen de la ejecución:
-   La automatización ejecutó correctamente el flujo de compra en https://www.saucedemo.com/
-   Se usó el usuario "Standard_user" y la contrasena "secret_sauce".
-   Se agregaron dos productos al carrito.
-   Se visualizó los productos del carrito.
-   Se completó el formulario.
-   Se verificó el mensaje final "Thank you for your order!".
-   
-2. Resultados:
-   Todos los pasos se ejecutaron sin errores.
-   El tiempo total de ejecución fue de aproximadamente x seggundos.
-   Selenium Manager gestionó automaticamente el driver de Chrome.
-   
-3. Hallazgos:
-   La pagina respondió correctamente, al inicio me bloqueaba un mensaje de contrasena, se 
-   solucionó con la siguiente línea:
-     prefs.put("profile.password_manager_leak_detection", false);
-   este me sirvió para la versión de chrome que mi máquina tiene actualmente, dejé 3 más por 
-   si tenga versiones anterioes
-     prefs.put("credentials_enable_service", false);
-     prefs.put("profile.password_manager_enabled", false);
-     prefs.put("autofill.profile_enabled", false);
-     
-Conslusion:
-El proyecto es totalmente funcional para navegador Chrome, se puede reusar ya que es adaptable 
-por la lectura de datos CSV, lo cual permite ejecutar con múltiples datos.
-   
+1. Resumen del ejercicio
+Se desarrolló una prueba automatizada End-to-End para el flujo de compra
+en el sitio http://opencart.abstracta.us/, utilizando Serenity BDD con Maven
+en Eclipse y parametrización de datos mediante archivo CSV.
+
+El flujo implementado contempla:
+- Agregar dos productos al carrito de compras.
+- Visualizar el carrito.
+- Ejecutar el proceso de Checkout como invitado (Guest Checkout).
+- Completar los datos de facturación.
+- Finalizar la compra hasta la pantalla de confirmación del pedido.
+
+2. Resultados de la ejecución
+Durante la ejecución del escenario se implementó lógica adicional para
+manejar productos sin stock, detectando alertas del sistema y realizando
+el reemplazo automático de productos no disponibles.
+
+Sin embargo, a pesar de dicha lógica, el flujo de compra presenta fallos
+intermitentes que impiden completar la ejecución de forma estable, debido
+a errores propios del comportamiento del sitio demo.
+
+3. Hallazgos técnicos
+- El ambiente http://opencart.abstracta.us/ corresponde a un entorno demo
+  público, cuyo inventario es dinámico y no garantiza consistencia entre
+  ejecuciones.
+- Algunos productos cambian su estado de disponibilidad durante la prueba,
+  provocando mensajes de error del sistema que bloquean el checkout.
+- Aunque se implementó lógica adicional para detectar y reemplazar productos
+  sin stock, la página presenta errores y comportamientos inesperados que
+  afectan la continuidad del flujo.
+- Se evidenció que la inestabilidad del entorno limita la confiabilidad de
+  pruebas E2E automatizadas sin un control previo del estado del inventario.
+
+4. Conclusión final
+La automatización desarrollada cumple con los requerimientos funcionales
+y técnicos solicitados para la prueba E2E, incluyendo el manejo de datos
+parametrizados y la incorporación de validaciones adicionales.
+
+No obstante, la ejecución completa del flujo se ve afectada por errores
+propios del entorno demo, por lo que la caída del escenario no se atribuye
+a la lógica de automatización sino a las limitaciones del sitio de pruebas.
+
+El proyecto queda preparado para ejecutarse de forma estable en un ambiente
+controlado o con datos que garanticen disponibilidad, permitiendo validar
+completamente el flujo de compra automatizado.
